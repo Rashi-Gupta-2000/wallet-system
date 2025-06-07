@@ -1,0 +1,21 @@
+.balanceContainer {
+    margin-bottom: 0.5rem;
+}
+
+.balanceTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: black;
+}
+
+.balanceAmount {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #059669;
+    margin-bottom: 0.25rem;
+}
+
+.balanceLabel {
+    color: #6b7280;
+}

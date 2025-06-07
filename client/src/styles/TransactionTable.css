@@ -1,0 +1,93 @@
+.tableContainer {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableHeader {
+    background-color: #f9fafb;
+}
+
+.tableHeaderRow {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tableHeaderCell {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    color: black;
+}
+
+.sortableHeader {
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.sortableHeader:hover {
+    background-color: #f3f4f6;
+}
+
+.sortIndicator {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.sortArrows {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.75rem;
+}
+
+.sortArrowActive {
+    color: #2563eb;
+}
+
+.sortArrowInactive {
+    color: #9ca3af;
+}
+
+.tableRow {
+    border-bottom: 1px solid #e5e7eb;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.tableRow:hover {
+    background-color: #f9fafb;
+}
+
+.tableCell {
+    padding: 0.75rem 1rem;
+    color: black;
+}
+
+.transactionBadge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.transactionCredit {
+    background-color: #dcfce7;
+    color: #166534;
+}
+
+.transactionDebit {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.amountCredit {
+    font-weight: 600;
+    color: #059669;
+}
+
+.amountDebit {
+    font-weight: 600;
+    color: #dc2626;
+}

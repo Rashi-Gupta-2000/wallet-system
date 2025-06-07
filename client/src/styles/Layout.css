@@ -1,0 +1,40 @@
+.pageContainer {
+    min-height: 100vh;
+    min-width: 100vw;
+    background-color: #f9fafb;
+    padding: 1.5rem;
+}
+
+.contentContainer {
+    max-width: 48rem;
+    margin: 0 auto;
+}
+
+.wideContentContainer {
+    max-width: 64rem;
+    margin: 0 auto;
+}
+
+.pageTitle {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 2rem;
+}
+
+.pageHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.sectionSpacing {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.centerContent {
+    text-align: center;
+}

@@ -1,0 +1,12 @@
+.paginationContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 0.5rem;
+}
+
+.pageInfo {
+    padding: 0.25rem 1rem;
+    font-weight: 500;
+}
