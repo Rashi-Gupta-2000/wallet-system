@@ -4,10 +4,15 @@ import TransactionTable from '../components/Transactions/TransactionTable'
 import Pagination from '../components/Transactions/Pagination'
 import { useTransactionTable } from '../hooks/useTransactionTable'
 import { exportTransactionsToCSV } from '../utils/csvExport'
+import ErrorMessage from '../components/UI/ErrorMessage'
 import '../styles/Layout.css'
 import '../styles/EmptyState.css'
 
-const TransactionsPage = ({ wallet, transactions, onNavigateToWallet }) => {
+const TransactionsPage = ({ wallet, transactions, onNavigateToWallet, onLoadMoreTransactions,
+  error,
+  onClearError,
+  loading
+ }) => {
   const {
     paginatedTransactions,
     sortedTransactions,
@@ -16,11 +21,19 @@ const TransactionsPage = ({ wallet, transactions, onNavigateToWallet }) => {
     sortField,
     sortOrder,
     setCurrentPage,
-    handleSort
+    handleSort,
+    loadMoreTransactions
   } = useTransactionTable(transactions)
+
+  console.log(transactions);
 
   const handleExport = () => {
     exportTransactionsToCSV(sortedTransactions, wallet?.username)
+  }
+
+  const handleLoadMore = async () => {
+    const moreTransactions = await onLoadMoreTransactions(transactions.length, 10)
+    loadMoreTransactions(moreTransactions)
   }
 
   return (
@@ -33,13 +46,23 @@ const TransactionsPage = ({ wallet, transactions, onNavigateToWallet }) => {
           </Button>
         </div>
 
+        <ErrorMessage error={error} onDismiss={onClearError} />
+
         {wallet && (
           <Card>
             <div className="pageHeader">
               <div>
-                <h2 className="formTitle">{wallet.username}'s Transactions</h2>
+                <h2 className="formTitle">{wallet.name}'s Transactions</h2>
                 <p className="balanceLabel">Total: {transactions.length} transactions</p>
               </div>
+              {/* <Button
+                  variant="secondary"
+                  onClick={handleLoadMore}
+                  loading={loading}
+                  disabled={loading}
+                >
+                  Load More
+                </Button> */}
               <Button
                 variant="success"
                 onClick={handleExport}

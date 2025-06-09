@@ -3,19 +3,26 @@ import Card from '../UI/Card'
 import Input from '../UI/Input'
 import Button from '../UI/Button'
 import '../../styles/TransactionForm.css'
+import ErrorMessage from '../UI/ErrorMessage'
 
-const TransactionForm = ({ onTransaction }) => {
+const TransactionForm = ({ onTransaction, loading, error, onClearError }) => {
   const [amount, setAmount] = useState('')
   const [description, setDescription] = useState('')
   const [type, setType] = useState('CREDIT')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    console.log(description)
     e.preventDefault()
     if (amount && parseFloat(amount) > 0) {
-      const success = onTransaction(amount, type, description)
+      const transactionAmount = type === 'CREDIT' 
+        ? parseFloat(amount) 
+        : -parseFloat(amount)
+
+      const success = await onTransaction(transactionAmount, type, description.trim() || 'No description')
       if (success) {
         setAmount('')
         setDescription('')
+        setType('CREDIT');
       }
     }
   }
@@ -23,6 +30,7 @@ const TransactionForm = ({ onTransaction }) => {
   return (
     <Card>
       <h3 className="formTitle">New Transaction</h3>
+      <ErrorMessage error={error} onDismiss={onClearError} />
       <form onSubmit={handleSubmit} className="formContainer">
         <Input
           label="Amount"
@@ -33,6 +41,7 @@ const TransactionForm = ({ onTransaction }) => {
           min="0.01"
           step="0.01"
           required
+          disabled={loading}
         />
         <div>
           <label className="inputLabel">Transaction Type</label>
@@ -63,16 +72,21 @@ const TransactionForm = ({ onTransaction }) => {
           label="Description (Optional)"
           type="text"
           value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          onChange={(e) => {
+            console.log(e.target.value)
+            setDescription(e.target.value)
+          }}
           placeholder="Enter transaction description..."
           maxLength="100"
+          disabled={loading}
         />
         <div className='centerContent'>
           <Button 
             type="submit" 
             variant="success" 
             fullWidth
-            disabled={!amount || parseFloat(amount) <= 0}
+            loading={loading}
+            disabled={!amount || parseFloat(amount) <= 0 || loading}
           >
             Submit Transaction
           </Button>

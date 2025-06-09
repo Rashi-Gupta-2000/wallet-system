@@ -8,6 +8,7 @@ const Input = ({
   placeholder = '', 
   required = false,
   className = '',
+  error = null,
   ...props 
 }) => {
   return (
@@ -25,6 +26,9 @@ const Input = ({
         className={`input ${className}`}
         {...props}
       />
+      {error && (
+        <p className="mt-1 text-sm text-red-600">{error}</p>
+      )}
     </div>
   )
 }

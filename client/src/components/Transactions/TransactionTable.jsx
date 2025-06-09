@@ -44,9 +44,9 @@ const TransactionTable = ({ transactions, sortField, sortOrder, onSort }) => {
               <td className={`tableCell ${
                 transaction.type === 'CREDIT' ? 'amountCredit' : 'amountDebit'
               }`}>
-                {transaction.type === 'CREDIT' ? '+' : '-'}{formatCurrency(transaction.amount)}
+                {transaction.type === 'CREDIT' ? '+' : ''}{formatCurrency(transaction.amount)}
               </td>
-              <td className="tableCell" title={transaction.description || ''}>
+              <td className="tableCell">
                 {transaction.description || '-'}
               </td>
               <td className="tableCell">{formatCurrency(transaction.balance)}</td>

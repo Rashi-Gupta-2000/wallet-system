@@ -1,10 +1,12 @@
 import '../../styles/Button.css'
+import LoadingSpinner from './LoadingSpinner';
 
 const Button = ({ 
   children, 
   variant = 'primary', 
   size = 'md', 
   disabled = false, 
+  loading = false,
   onClick, 
   className = '',
   fullWidth = false,
@@ -21,10 +23,11 @@ const Button = ({
   return (
     <button
       className={classes}
-      disabled={disabled}
+      disabled={disabled || loading}
       onClick={onClick}
       {...props}
     >
+      {loading && <LoadingSpinner size="sm" className="mr-2" />}
       {children}
     </button>
   )
