@@ -1,12 +1,13 @@
 export const exportTransactionsToCSV = (transactions, username) => {
-  const headers = ["Date", "Type", "Amount", "Balance"];
+  const headers = ["Date", "Type", "Amount (₹)", "Balance (₹)"];
   const csvContent = [
     headers.join(","),
     ...transactions.map((t) =>
       [
         new Date(t.date).toLocaleDateString(),
         t.type,
-        t.amount,
+        t.amount.toFixed(2),
+        `"${t.description || ""}"`,
         t.balance.toFixed(2),
       ].join(",")
     ),

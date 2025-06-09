@@ -26,6 +26,7 @@ const TransactionTable = ({ transactions, sortField, sortOrder, onSort }) => {
             <SortableHeader field="date">Date</SortableHeader>
             <th className="tableHeaderCell">Type</th>
             <SortableHeader field="amount">Amount</SortableHeader>
+            <th className="tableHeaderCell">Description</th>
             <th className="tableHeaderCell">Balance After</th>
           </tr>
         </thead>
@@ -44,6 +45,9 @@ const TransactionTable = ({ transactions, sortField, sortOrder, onSort }) => {
                 transaction.type === 'CREDIT' ? 'amountCredit' : 'amountDebit'
               }`}>
                 {transaction.type === 'CREDIT' ? '+' : '-'}{formatCurrency(transaction.amount)}
+              </td>
+              <td className="tableCell" title={transaction.description || ''}>
+                {transaction.description || '-'}
               </td>
               <td className="tableCell">{formatCurrency(transaction.balance)}</td>
             </tr>

@@ -6,14 +6,16 @@ import '../../styles/TransactionForm.css'
 
 const TransactionForm = ({ onTransaction }) => {
   const [amount, setAmount] = useState('')
+  const [description, setDescription] = useState('')
   const [type, setType] = useState('CREDIT')
 
   const handleSubmit = (e) => {
     e.preventDefault()
     if (amount && parseFloat(amount) > 0) {
-      const success = onTransaction(amount, type)
+      const success = onTransaction(amount, type, description)
       if (success) {
         setAmount('')
+        setDescription('')
       }
     }
   }
@@ -57,6 +59,14 @@ const TransactionForm = ({ onTransaction }) => {
             </label>
           </div>
         </div>
+        <Input
+          label="Description (Optional)"
+          type="text"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Enter transaction description..."
+          maxLength="100"
+        />
         <div className='centerContent'>
           <Button 
             type="submit" 

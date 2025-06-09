@@ -11,8 +11,8 @@ function App() {
     initializeWallet(username, initialBalance)
   }
 
-  const handleTransaction = (amount, type) => {
-    return processTransaction(amount, type)
+  const handleTransaction = (amount, type, description) => {
+    return processTransaction(amount, type, description)
   }
 
   const handleNavigateToTransactions = () => {

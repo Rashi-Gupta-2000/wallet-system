@@ -17,7 +17,7 @@ export const useWallet = () => {
     return true;
   };
 
-  const processTransaction = (amount, type) => {
+  const processTransaction = (amount, type, description = "") => {
     if (!wallet || !amount || parseFloat(amount) <= 0) return false;
 
     const transactionAmount = parseFloat(amount);
@@ -30,6 +30,7 @@ export const useWallet = () => {
       id: Date.now().toString(),
       amount: transactionAmount,
       type,
+      description: description.trim(),
       date: new Date().toISOString(),
       balance: newBalance,
     };
