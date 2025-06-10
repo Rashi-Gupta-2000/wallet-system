@@ -89,11 +89,9 @@ export const useWallet = () => {
           description
         );
 
-        // Refresh wallet data
         const updatedWallet = await walletApi.getWallet(wallet.id);
         setWallet(updatedWallet);
 
-        // Refresh transactions
         const updatedTransactions = await walletApi.getTransactions(
           wallet.id,
           0,

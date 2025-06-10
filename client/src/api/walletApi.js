@@ -1,8 +1,6 @@
 import { API_CONFIG } from "../config/api";
 import { handleApiError, retryApiCall } from "../utils/apiHelpers";
 
-// const API_BASE_URL = "http://localhost:3000";
-
 class WalletAPI {
   constructor() {
     this.baseURL = API_CONFIG.BASE_URL;

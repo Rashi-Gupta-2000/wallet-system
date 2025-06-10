@@ -9,10 +9,8 @@ import '../styles/Layout.css'
 import '../styles/EmptyState.css'
 
 const TransactionsPage = ({ wallet, transactions, onNavigateToWallet,
-  // onLoadMoreTransactions,
   error,
   onClearError,
-  // loading
  }) => {
   const {
     paginatedTransactions,
@@ -23,7 +21,6 @@ const TransactionsPage = ({ wallet, transactions, onNavigateToWallet,
     sortOrder,
     setCurrentPage,
     handleSort,
-    // loadMoreTransactions
   } = useTransactionTable(transactions)
 
   console.log(transactions);
@@ -31,11 +28,6 @@ const TransactionsPage = ({ wallet, transactions, onNavigateToWallet,
   const handleExport = () => {
     exportTransactionsToCSV(sortedTransactions, wallet?.username)
   }
-
-  // const handleLoadMore = async () => {
-  //   const moreTransactions = await onLoadMoreTransactions(transactions.length, 10)
-  //   loadMoreTransactions(moreTransactions)
-  // }
 
   return (
     <div className="pageContainer">
@@ -56,14 +48,6 @@ const TransactionsPage = ({ wallet, transactions, onNavigateToWallet,
                 <h2 className="formTitle">{wallet.name}'s Transactions</h2>
                 <p className="balanceLabel">Total: {transactions.length} transactions</p>
               </div>
-              {/* <Button
-                  variant="secondary"
-                  onClick={handleLoadMore}
-                  loading={loading}
-                  disabled={loading}
-                >
-                  Load More
-                </Button> */}
               <Button
                 variant="success"
                 onClick={handleExport}
