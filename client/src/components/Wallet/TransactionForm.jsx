@@ -18,7 +18,7 @@ const TransactionForm = ({ onTransaction, loading, error, onClearError }) => {
         ? parseFloat(amount) 
         : -parseFloat(amount)
 
-      const success = await onTransaction(transactionAmount, type, description.trim() || 'No description')
+      const success = await onTransaction(transactionAmount, type, description.trim() || '-')
       if (success) {
         setAmount('')
         setDescription('')

@@ -73,7 +73,7 @@ class WalletAPI {
   }
 
   // GET /transactions?walletId=:id&skip=:skip&limit=:limit
-  async getTransactions(walletId, skip = 0, limit = 10) {
+  async getTransactions(walletId, skip = 0, limit = 100) {
     const queryParams = new URLSearchParams({
       walletId,
       skip: skip.toString(),

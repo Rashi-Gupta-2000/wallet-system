@@ -2,6 +2,7 @@ const sequelize = require("../database/sequelize");
 const Wallet = require("../models/wallet.model");
 const Transaction = require("../models/transaction.model");
 const { getTransactionType } = require("../utils/helpers");
+const { Op } = require("sequelize");
 
 const processTransaction = async (req, res, next) => {
   const { walletId } = req.params;
@@ -69,9 +70,9 @@ const processTransaction = async (req, res, next) => {
 
 const getTransactions = async (req, res, next) => {
   try {
-    const { walletId, skip = 0, limit = 10 } = req.query;
+    const { walletId, skip = 0, limit = 100 } = req.query;
     const transactions = await Transaction.findAll({
-      where: { walletId },
+      where: { walletId, amount: { [Op.ne]: 0 } },
       offset: parseInt(skip),
       limit: parseInt(limit),
       order: [["createdAt", "DESC"]],

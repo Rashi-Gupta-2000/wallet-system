@@ -8,10 +8,11 @@ import ErrorMessage from '../components/UI/ErrorMessage'
 import '../styles/Layout.css'
 import '../styles/EmptyState.css'
 
-const TransactionsPage = ({ wallet, transactions, onNavigateToWallet, onLoadMoreTransactions,
+const TransactionsPage = ({ wallet, transactions, onNavigateToWallet,
+  // onLoadMoreTransactions,
   error,
   onClearError,
-  loading
+  // loading
  }) => {
   const {
     paginatedTransactions,
@@ -22,7 +23,7 @@ const TransactionsPage = ({ wallet, transactions, onNavigateToWallet, onLoadMore
     sortOrder,
     setCurrentPage,
     handleSort,
-    loadMoreTransactions
+    // loadMoreTransactions
   } = useTransactionTable(transactions)
 
   console.log(transactions);
@@ -31,10 +32,10 @@ const TransactionsPage = ({ wallet, transactions, onNavigateToWallet, onLoadMore
     exportTransactionsToCSV(sortedTransactions, wallet?.username)
   }
 
-  const handleLoadMore = async () => {
-    const moreTransactions = await onLoadMoreTransactions(transactions.length, 10)
-    loadMoreTransactions(moreTransactions)
-  }
+  // const handleLoadMore = async () => {
+  //   const moreTransactions = await onLoadMoreTransactions(transactions.length, 10)
+  //   loadMoreTransactions(moreTransactions)
+  // }
 
   return (
     <div className="pageContainer">

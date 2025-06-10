@@ -19,7 +19,7 @@ export const useWallet = () => {
           const transactionsData = await walletApi.getTransactions(
             storedWalletId,
             0,
-            10
+            100
           );
           setTransactions(transactionsData);
         }
@@ -59,7 +59,7 @@ export const useWallet = () => {
       const transactionsResponse = await walletApi.getTransactions(
         response.id,
         0,
-        10
+        100
       );
       setTransactions(transactionsResponse);
 
@@ -97,7 +97,7 @@ export const useWallet = () => {
         const updatedTransactions = await walletApi.getTransactions(
           wallet.id,
           0,
-          10
+          100
         );
         setTransactions(updatedTransactions);
 
@@ -136,36 +136,6 @@ export const useWallet = () => {
     [wallet]
   );
 
-  // const refreshWallet = useCallback(async () => {
-  //   if (!wallet) return;
-
-  //   setLoading(true);
-  //   setError(null);
-
-  //   try {
-  //     const updatedWallet = await walletApi.getWallet(wallet.id);
-  //     setWallet(updatedWallet);
-
-  //     const updatedTransactions = await walletApi.getTransactions(
-  //       wallet.id,
-  //       0,
-  //       10
-  //     );
-  //     setTransactions(updatedTransactions);
-  //   } catch (err) {
-  //     setError(err.message || "Failed to refresh wallet");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }, [wallet]);
-
-  // const clearWallet = useCallback(() => {
-  //   setWallet(null);
-  //   setTransactions([]);
-  //   setError(null);
-  //   localStorage.removeItem("walletId");
-  // }, []);
-
   return {
     wallet,
     transactions,
@@ -174,8 +144,6 @@ export const useWallet = () => {
     initializeWallet,
     processTransaction,
     loadMoreTransactions,
-    // refreshWallet,
     clearError,
-    // clearWallet,
   };
 };

@@ -1,12 +1,20 @@
-const LoadingSpinner = ({ size = 'md', className = '' }) => {
+import "../../styles/Loading.css"
+
+const LoadingSpinner = ({ size = 'md', spacing = 'md', className = '' }) => {
   const sizeClasses = {
-    sm: 'w-4 h-4',
-    md: 'w-6 h-6',
-    lg: 'w-8 h-8'
+    sm: 'spinner-sm',
+    md: 'spinner-md',
+    lg: 'spinner-lg'
+  }
+
+  const spacingClasses = {
+    sm: 'spinner-spacing-sm',
+    md: 'spinner-spacing-md',
+    lg: 'spinner-spacing-lg'
   }
 
   return (
-    <div className={`inline-block animate-spin rounded-full border-2 border-solid border-current border-r-transparent ${sizeClasses[size]} ${className}`}>
+    <div className={`spinner ${sizeClasses[size]} ${spacingClasses[spacing]} ${className}`}>
       <span className="sr-only">Loading...</span>
     </div>
   )
